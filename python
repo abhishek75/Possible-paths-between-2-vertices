@@ -1,0 +1,21 @@
+class Solution:
+    
+    #Function to count paths between two vertices in a directed graph.
+    def countPaths(self, V, adj, source, destination):
+        visited = set()
+        path_count = 0
+        
+        def dfs(i, visited):
+            nonlocal path_count
+            visited.add(i)
+            if destination == i:
+                # print(visited)
+                path_count += 1
+            for j in adj[i]:
+                if j not in visited:
+                        dfs(j, visited)
+                            
+            visited.discard(i)
+        
+        dfs(source, visited)
+        return path_count
